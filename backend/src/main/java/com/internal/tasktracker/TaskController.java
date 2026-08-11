@@ -4,12 +4,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
 public class TaskController {
+
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
     private final TaskRepository taskRepository;
 
@@ -34,8 +38,8 @@ public class TaskController {
             normalizedStatus = TaskStatus.valueOf(status.toUpperCase()).name();
         }
 
-        System.out.println("[TaskController] q=\"" + query + "\" status=" + normalizedStatus
-                + " page=" + page + " pageSize=" + pageSize);
+        logger.info("searchTasks called: q=\"{}\" status={} page={} pageSize={}", 
+                query, normalizedStatus, page, pageSize);
 
         PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
         Page<Task> taskPage = taskRepository.searchTasks(searchTerm, normalizedStatus, pageRequest);
