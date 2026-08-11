@@ -70,6 +70,10 @@ export default function App() {
           }} 
         />
       )}
+
+      <footer className="app-footer">
+        &copy; 2026 Task Tracker. All rights reserved.
+      </footer>
     </div>
   );
 }
