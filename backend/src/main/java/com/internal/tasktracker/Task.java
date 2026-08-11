@@ -26,7 +26,7 @@ public class Task {
     @Column(nullable = false)
     private boolean archived;
 
-    @Column
+    @Column(length = 100)
     private String assignee;
 
     @Column(name = "created_at")
