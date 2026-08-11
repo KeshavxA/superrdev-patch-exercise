@@ -1,6 +1,6 @@
 export default function TaskTable({ tasks, loading, error }) {
   if (loading) {
-    return <div className="state-message">Loading tasks...</div>;
+    return <div className="state-message loading-pulse">Loading tasks...</div>;
   }
 
   if (error) {
