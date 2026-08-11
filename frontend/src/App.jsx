@@ -35,7 +35,14 @@ export default function App() {
       </header>
 
       <div className="controls">
-        <SearchBar value={query} onChange={setQuery} />
+        <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
+          <SearchBar value={query} onChange={setQuery} />
+          {query && (
+            <button className="btn-secondary" onClick={() => setQuery('')}>
+              Clear
+            </button>
+          )}
+        </div>
         <StatusFilter value={status} onChange={setStatus} />
       </div>
 
