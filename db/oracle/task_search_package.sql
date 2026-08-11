@@ -54,24 +54,16 @@ CREATE OR REPLACE PACKAGE BODY task_search_pkg AS
             OR LOWER(description) LIKE v_term)
            AND (p_status IS NULL OR status = p_status);
 
-        -- Paginated results using ROWNUM (pre-12c pattern)
+        -- Paginated results using OFFSET/FETCH NEXT (12c+ pattern)
         OPEN p_results FOR
             SELECT id, title, description, status, priority, assignee, created_at
-              FROM (
-                  SELECT t.*, ROWNUM AS rn
-                    FROM (
-                        SELECT id, title, description, status, priority,
-                               assignee, created_at
-                          FROM tasks
-                         WHERE archived = 0
-                           AND (LOWER(title) LIKE v_term
-                            OR LOWER(description) LIKE v_term)
-                           AND (p_status IS NULL OR status = p_status)
-                         ORDER BY created_at DESC
-                    ) t
-                   WHERE ROWNUM <= v_offset + p_page_size
-              )
-             WHERE rn > v_offset;
+              FROM tasks
+             WHERE archived = 0
+               AND (LOWER(title) LIKE v_term
+                OR LOWER(description) LIKE v_term)
+               AND (p_status IS NULL OR status = p_status)
+             ORDER BY created_at DESC
+            OFFSET v_offset ROWS FETCH NEXT p_page_size ROWS ONLY;
 
     END search_tasks;
 
