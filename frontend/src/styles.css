@@ -84,6 +84,10 @@ body {
   vertical-align: top;
 }
 
+.task-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
 .task-table tr:last-child td {
   border-bottom: none;
 }
