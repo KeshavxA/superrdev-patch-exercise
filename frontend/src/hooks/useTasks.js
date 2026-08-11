@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchTasks } from '../api';
 
-export function useTasks(query, status, page, pageSize) {
+export function useTasks(query, status, page, pageSize, refreshTrigger = 0) {
   const [tasks, setTasks] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ export function useTasks(query, status, page, pageSize) {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [query, status, page, pageSize]);
+  }, [query, status, page, pageSize, refreshTrigger]);
 
   return { tasks, total, loading, error };
 }

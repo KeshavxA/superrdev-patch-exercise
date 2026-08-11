@@ -2,26 +2,36 @@ import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import StatusFilter from './components/StatusFilter';
 import TaskTable from './components/TaskTable';
+import CreateTaskModal from './components/CreateTaskModal';
 import { useTasks } from './hooks/useTasks';
 
 export default function App() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('');
   const [page, setPage] = useState(1);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     setPage(1);
   }, [query, status]);
 
-  const { tasks, total, loading, error } = useTasks(query, status, page, 10);
+  const { tasks, total, loading, error } = useTasks(query, status, page, 10, refreshTrigger);
 
   const totalPages = Math.ceil(total / 10);
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Task Tracker</h1>
-        <p className="subtitle">Internal task management</p>
+        <div className="header-top">
+          <div>
+            <h1>Task Tracker</h1>
+            <p className="subtitle">Internal task management</p>
+          </div>
+          <button className="btn-primary" onClick={() => setIsCreateModalOpen(true)}>
+            + New Task
+          </button>
+        </div>
       </header>
 
       <div className="controls">
@@ -43,6 +53,15 @@ export default function App() {
             Next
           </button>
         </div>
+      )}
+
+      {isCreateModalOpen && (
+        <CreateTaskModal 
+          onClose={() => setIsCreateModalOpen(false)} 
+          onTaskCreated={() => {
+            setRefreshTrigger(prev => prev + 1);
+          }} 
+        />
       )}
     </div>
   );

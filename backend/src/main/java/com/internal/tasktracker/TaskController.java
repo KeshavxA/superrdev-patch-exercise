@@ -48,4 +48,18 @@ public class TaskController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/api/tasks")
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        if (task.getTitle() == null || task.getTitle().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        task.setCreatedAt(java.time.LocalDateTime.now());
+        if (task.getStatus() == null) {
+            task.setStatus(TaskStatus.OPEN.name());
+        }
+        task.setArchived(false);
+        Task savedTask = taskRepository.save(task);
+        return ResponseEntity.ok(savedTask);
+    }
 }

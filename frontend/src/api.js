@@ -18,3 +18,20 @@ export async function fetchTasks({ query = '', status = '', page = 1, pageSize =
 
   return response.json();
 }
+
+export async function createTask(task) {
+  const url = `${API_BASE}/tasks`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(task),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`);
+  }
+
+  return response.json();
+}
