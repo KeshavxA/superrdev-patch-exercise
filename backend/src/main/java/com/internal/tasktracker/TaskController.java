@@ -35,7 +35,10 @@ public class TaskController {
         // Parse status filter
         String normalizedStatus = null;
         if (status != null && !status.isEmpty()) {
-            normalizedStatus = TaskStatus.valueOf(status.toUpperCase()).name();
+            TaskStatus parsedStatus = TaskStatus.fromStringIgnoreCase(status);
+            if (parsedStatus != null) {
+                normalizedStatus = parsedStatus.name();
+            }
         }
 
         logger.info("searchTasks called: q=\"{}\" status={} page={} pageSize={}", 
