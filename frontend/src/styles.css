@@ -257,6 +257,13 @@ body {
   align-items: center;
 }
 
+.header-top h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+}
+
 .app-footer {
   margin-top: 2rem;
   text-align: center;
