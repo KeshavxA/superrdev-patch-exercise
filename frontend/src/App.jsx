@@ -38,7 +38,12 @@ export default function App() {
         <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
           <SearchBar value={query} onChange={setQuery} />
           {query && (
-            <button className="btn-secondary" onClick={() => setQuery('')}>
+            <button 
+              className="btn-secondary" 
+              onClick={() => setQuery('')}
+              title="Clear search"
+              aria-label="Clear search"
+            >
               Clear
             </button>
           )}
