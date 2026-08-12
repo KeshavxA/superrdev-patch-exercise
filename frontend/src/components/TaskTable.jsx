@@ -8,7 +8,7 @@ export default function TaskTable({ tasks, loading, error }) {
   }
 
   if (!tasks || tasks.length === 0) {
-    return <div className="state-message">No tasks found.</div>;
+    return <div className="state-message">No tasks match your search or filters.</div>;
   }
 
   return (
