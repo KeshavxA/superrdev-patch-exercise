@@ -15,7 +15,7 @@ export default function TaskTable({ tasks, loading, error }) {
     <table className="task-table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>Title</th>
           <th>Status</th>
           <th>Priority</th>
