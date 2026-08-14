@@ -70,4 +70,9 @@ public class TaskController {
         logger.info("Created new task with id: {}", savedTask.getId());
         return ResponseEntity.ok(savedTask);
     }
+
+    @GetMapping("/api/ping")
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok("pong");
+    }
 }
