@@ -253,6 +253,11 @@ body {
   background: #f5f5f5;
 }
 
+.btn-primary:active:not(:disabled),
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 .header-top {
   display: flex;
   justify-content: space-between;
