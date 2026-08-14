@@ -47,6 +47,7 @@ export default function CreateTaskModal({ onClose, onTaskCreated }) {
               onChange={(e) => setTitle(e.target.value)} 
               placeholder="Task title"
               required
+              autoFocus
             />
           </div>
           
