@@ -258,6 +258,10 @@ body {
   transform: scale(0.98);
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 .header-top {
   display: flex;
   justify-content: space-between;
