@@ -34,7 +34,7 @@ export default function App() {
         </div>
       </header>
 
-      <div className="controls">
+      <div className="controls" role="search" aria-label="Task Filters">
         <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
           <SearchBar value={query} onChange={setQuery} />
           {query && (
