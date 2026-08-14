@@ -19,7 +19,7 @@ public class Task {
     @Column(length = 1000)
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
     @Column
