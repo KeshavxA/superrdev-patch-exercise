@@ -67,6 +67,7 @@ public class TaskController {
         }
         task.setArchived(false);
         Task savedTask = taskRepository.save(task);
+        logger.info("Created new task with id: {}", savedTask.getId());
         return ResponseEntity.ok(savedTask);
     }
 }
