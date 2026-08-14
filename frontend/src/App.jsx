@@ -26,7 +26,7 @@ export default function App() {
         <div className="header-top">
           <div>
             <h1>Task Tracker</h1>
-            <p className="subtitle">Internal task management</p>
+            <p className="subtitle">Manage your daily tasks efficiently</p>
           </div>
           <button className="btn-primary" onClick={() => setIsCreateModalOpen(true)}>
             + New Task
